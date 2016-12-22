@@ -1,3 +1,4 @@
+#include "ArduinoCompat.h"
 #include <Arduino.h>
 #include <NMEAGPS.h>
 

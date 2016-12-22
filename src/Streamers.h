@@ -1,6 +1,7 @@
 #ifndef STREAMERS_H
 #define STREAMERS_H
 
+#include "ArduinoCompat.h"
 #include <Arduino.h>
 
 #include "Time.h"

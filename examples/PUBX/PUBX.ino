@@ -1,3 +1,4 @@
+#include "ArduinoCompat.h"
 #include <NeoGPS_cfg.h>
 #include <ublox/ubxNMEA.h>
 

@@ -1,3 +1,4 @@
+#include "ArduinoCompat.h"
 #include <Arduino.h>
 #include <NMEAGPS.h>
 
@@ -15,7 +16,7 @@
 
 #if defined( UBRR1H ) | defined( ID_USART0 )
   // Default is to use NeoSerial1 when available.  You could also
-  #include <NeoHWSerial.h>
+  // #include <NeoHWSerial.h>
   // NOTE: There is an issue with IDEs before 1.6.6.  The above include 
   // must be commented out for non-Mega boards, even though it is
   // conditionally included.  If you are using an earlier IDEs, 
