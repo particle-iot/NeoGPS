@@ -1,6 +1,0 @@
-#pragma once
-
-#define UBRR1H
-#define ARDUINO 108000
-#define PARTICLE_ARDUINO_COMPATIBILITY
-

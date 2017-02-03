@@ -22,7 +22,6 @@
 #ifndef TIME_H
 #define TIME_H
 
-#include "ArduinoCompat.h"
 #include <Arduino.h>
 
 #include "NeoGPS_cfg.h"

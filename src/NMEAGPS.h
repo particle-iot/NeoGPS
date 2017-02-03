@@ -21,7 +21,6 @@
 
 #include "CosaCompat.h"
 
-#include "ArduinoCompat.h"
 #include <Arduino.h>
 #ifdef __AVR__
   #include <avr/interrupt.h>
