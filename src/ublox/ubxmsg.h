@@ -31,6 +31,7 @@ namespace ublox {
         UBX_CFG_MSG      = 0x01, // Configure which messages to send
         UBX_CFG_RST      = 0x04, // Reset command
         UBX_CFG_RATE     = 0x08, // Configure message rate
+        UBX_CFG_ANT      = 0x13, // ANT configuration
         UBX_CFG_NMEA     = 0x17, // Configure NMEA protocol
         UBX_CFG_NAV5     = 0x24, // Configure navigation engine settings
         UBX_MON_VER      = 0x04, // Monitor Receiver/Software version
@@ -104,6 +105,35 @@ namespace ublox {
     } __attribute__((packed));
 
     extern bool configNMEA( ubloxGPS &gps, NMEAGPS::nmea_msg_t msgType, uint8_t rate );
+    
+    //Antenna configuration
+    struct cfg_ant_t : msg_t {
+
+      struct ant_flags_t
+         { 
+           bool svcs                  :1; //Enable Antenna Supply Voltage Control Signal
+           bool scd                   :1; //Enable Short Circuit Detection
+           bool ocd                   :1; //Enable Open Circuit Detection
+           bool pdwn_on_scd           :1; //Power Down Antenna supply if Short Circuit is detected. (only in combination with Bit 1)
+           bool recovery              :1; //Enable automatic recovery from short state
+           bool _reserved1_           :3;
+           bool _reserved2_           :8;
+         } __attribute__((packed)); 
+
+      struct ant_pins_t
+         { 
+           uint8_t pin_switch             :5; //PIO-Pin used for switching antenna supply
+           uint8_t pin_scd                :5; //PIO-Pin used for detecting a short in the antenna supply
+           uint8_t pin_ocd                :5; //PIO-Pin used for detecting open/not connected antenna
+           bool    reconfig               :1; //if set to one, and this command is sent to the receiver, the receiver will reconfigure the pins as specified.            
+         } __attribute__((packed));
+
+      ant_flags_t ant_flags;
+      ant_pins_t ant_pins;
+
+       cfg_ant_t() : msg_t( UBX_CFG, UBX_CFG_ANT, UBX_MSG_LEN(*this) ) {init();}
+
+    }  __attribute__((packed));
     
     // Reset command
     struct cfg_reset_t : msg_t {
