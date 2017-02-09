@@ -76,8 +76,10 @@ float AssetTracker::getGpsAccuracy(){
 
 uint32_t AssetTracker::getGpsTimestamp(){
 
-	if(fix_data.valid.time) return fix_data.dateTime;
-		else return 0;
+	while (gps.available( gps_port )) {
+    fix_data = gps.read();
+}
+	return fix_data.dateTime;
 
 }
 
